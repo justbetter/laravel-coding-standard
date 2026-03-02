@@ -1,0 +1,10 @@
+includes:
+    - ./vendor/justbetter/laravel-coding-standard/phpstan.neon
+
+parameters:
+    level: 1
+    paths:
+        - app/
+#        - packages/
+#        - modules/
+#        - addons/

@@ -1,0 +1,17 @@
+{
+    "name": "justbetter/laravel-coding-standard",
+    "description": "This package contains the coding standards configurations used for our packages and projects",
+    "type": "package",
+    "suggest": {
+        "laravel/pint": "Laravel Pint codestyle",
+        "ergebnis/composer-normalize": "Ensure composer.json files are properly sorted",
+        "larastan/larastan": "PHPStan with extra rules for Laravel",
+        "driftingly/rector-laravel": "Rector with extra rules for Laravel"
+    },
+    "authors": [
+        {
+            "name": "indy koning",
+            "email": "indy@justbetter.nl"
+        }
+    ]
+}

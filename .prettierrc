@@ -1,0 +1,7 @@
+{
+    "sortTailwindcssClasses": true,
+    "sortHtmlAttributes": "code-guide",
+    "noPhpSyntaxCheck": true,
+    "semi": false,
+    "singleQuote": true
+}
