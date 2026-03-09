@@ -34,6 +34,15 @@ then copy the sample configuration file, this includes larastan with some basic 
 \cp vendor/justbetter/laravel-coding-standard/phpstan.sample.neon phpstan.neon
 ```
 
+### Optional - Copy workflow
+
+Once you've installed PHPStan you could copy the analyse workflow to automatically run it for PRs
+
+```shell-script
+\mkdir -p .github/workflows
+\cp vendor/justbetter/laravel-coding-standard/.github/sample-workflows/analyse.yml .github/workflows/analyse.yml
+```
+
 ## Rector
 
 As a good companion to PHPStan we also have configuration for Rector which can in some cases fix PHPStan issues, and improve the results given by PHPStan
@@ -50,6 +59,9 @@ then copy the sample configuration file, this includes Rector with some basic se
 \cp vendor/justbetter/laravel-coding-standard/rector.sample.php rector.php
 ```
 
+Rector is much more stable in it's changes than it ever was, rarely (if at all) making breaking changes.
+We still recommend running it manually instead of using workflows.
+
 ## Prettier formatter
 
 To get prettier working in blade and frontend you will need to install prettier
@@ -62,4 +74,13 @@ and add a .prettierrc
 
 ```shell-script
 \ln -sf vendor/justbetter/laravel-coding-standard/.prettierrc .prettierrc
+```
+
+### Optional - Copy workflow
+
+Once you've installed PHPStan you could copy the prettier workflow to automatically run it for PRs
+
+```shell-script
+\mkdir -p .github/workflows
+\cp vendor/justbetter/laravel-coding-standard/.github/sample-workflows/prettier.yml .github/workflows/prettier.yml
 ```
