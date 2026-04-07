@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use Rector\CodeQuality\Rector\FuncCall\SingleInArrayToCompareRector;
 use Rector\CodingStyle\Rector\Encapsed\EncapsedStringsToSprintfRector;
+use Rector\CodingStyle\Rector\Stmt\NewlineAfterStatementRector;
 use Rector\Config\RectorConfig;
 use Rector\DeadCode\Rector\MethodCall\RemoveNullArgOnNullDefaultParamRector;
 use Rector\Php74\Rector\Closure\ClosureToArrowFunctionRector;
@@ -40,6 +41,7 @@ return RectorConfig::configure()
         ClosureToArrowFunctionRector::class, // Skip turning all anonymous functions into arrow functions.
         EncapsedStringsToSprintfRector::class, // Skip turning "abc {$var}" into sprintf('abc %s', $var).
         ModelCastsPropertyToCastsMethodRector::class, // Skip turning casts variable to function.
+        NewlineAfterStatementRector::class, // Don't add new lines, this is phpcs' responsibility
         RemoveNullArgOnNullDefaultParamRector::class, // Skip removing null from instances like `where('x', '=', null)`
         DispatchToHelperFunctionsRector::class, // Skip turning Job::dispatch() into dispatch(new Job())
         AppToResolveRector::class, // Skip turning app(Resolvable::class) into resolve(Resolvable::class)
