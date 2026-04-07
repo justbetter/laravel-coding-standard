@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Rector\CodeQuality\Rector\FuncCall\SingleInArrayToCompareRector;
 use Rector\CodingStyle\Rector\Encapsed\EncapsedStringsToSprintfRector;
 use Rector\Config\RectorConfig;
 use Rector\DeadCode\Rector\MethodCall\RemoveNullArgOnNullDefaultParamRector;
@@ -43,6 +44,7 @@ return RectorConfig::configure()
         DispatchToHelperFunctionsRector::class, // Skip turning Job::dispatch() into dispatch(new Job())
         AppToResolveRector::class, // Skip turning app(Resolvable::class) into resolve(Resolvable::class)
         RedirectRouteToToRouteHelperRector::class, // Skip turing redirect()->route(...) into `to_route`
+        SingleInArrayToCompareRector::class, // Skip turning in_array checks into `===` checks
         NameImportingPostRector::class => [ // Skip importing names in config files.
             'config'
         ]
