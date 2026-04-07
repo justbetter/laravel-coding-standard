@@ -8,6 +8,7 @@ use Rector\DeadCode\Rector\MethodCall\RemoveNullArgOnNullDefaultParamRector;
 use Rector\Php74\Rector\Closure\ClosureToArrowFunctionRector;
 use Rector\PostRector\Rector\NameImportingPostRector;
 use RectorLaravel\Rector\Class_\ModelCastsPropertyToCastsMethodRector;
+use RectorLaravel\Rector\FuncCall\AppToResolveRector;
 use RectorLaravel\Rector\MethodCall\RedirectRouteToToRouteHelperRector;
 use RectorLaravel\Rector\StaticCall\DispatchToHelperFunctionsRector;
 use RectorLaravel\Set\LaravelSetList;
@@ -40,6 +41,7 @@ return RectorConfig::configure()
         ModelCastsPropertyToCastsMethodRector::class, // Skip turning casts variable to function.
         RemoveNullArgOnNullDefaultParamRector::class, // Skip removing null from instances like `where('x', '=', null)`
         DispatchToHelperFunctionsRector::class, // Skip turning Job::dispatch() into dispatch(new Job())
+        AppToResolveRector::class, // Skip turning app(Resolvable::class) into resolve(Resolvable::class)
         RedirectRouteToToRouteHelperRector::class, // Skip turing redirect()->route(...) into `to_route`
         NameImportingPostRector::class => [ // Skip importing names in config files.
             'config'
