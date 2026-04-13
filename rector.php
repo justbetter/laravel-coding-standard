@@ -9,7 +9,22 @@ use Rector\Config\RectorConfig;
 use Rector\DeadCode\Rector\MethodCall\RemoveNullArgOnNullDefaultParamRector;
 use Rector\Php74\Rector\Closure\ClosureToArrowFunctionRector;
 use Rector\PostRector\Rector\NameImportingPostRector;
+use RectorLaravel\Rector\Class_\AppendsPropertyToAppendsAttributeRector;
+use RectorLaravel\Rector\Class_\BackoffPropertyToBackoffAttributeRector;
+use RectorLaravel\Rector\Class_\ConnectionPropertyToConnectionAttributeRector;
+use RectorLaravel\Rector\Class_\FailOnTimeoutPropertyToFailOnTimeoutAttributeRector;
+use RectorLaravel\Rector\Class_\FillablePropertyToFillableAttributeRector;
+use RectorLaravel\Rector\Class_\GuardedPropertyToGuardedAttributeRector;
+use RectorLaravel\Rector\Class_\HiddenPropertyToHiddenAttributeRector;
+use RectorLaravel\Rector\Class_\JobConnectionPropertyToJobConnectionAttributeRector;
+use RectorLaravel\Rector\Class_\MaxExceptionsPropertyToMaxExceptionsAttributeRector;
 use RectorLaravel\Rector\Class_\ModelCastsPropertyToCastsMethodRector;
+use RectorLaravel\Rector\Class_\QueuePropertyToQueueAttributeRector;
+use RectorLaravel\Rector\Class_\TablePropertyToTableAttributeRector;
+use RectorLaravel\Rector\Class_\TimeoutPropertyToTimeoutAttributeRector;
+use RectorLaravel\Rector\Class_\TouchesPropertyToTouchesAttributeRector;
+use RectorLaravel\Rector\Class_\TriesPropertyToTriesAttributeRector;
+use RectorLaravel\Rector\Class_\UniqueForPropertyToUniqueForAttributeRector;
 use RectorLaravel\Rector\FuncCall\AppToResolveRector;
 use RectorLaravel\Rector\MethodCall\RedirectRouteToToRouteHelperRector;
 use RectorLaravel\Rector\StaticCall\DispatchToHelperFunctionsRector;
@@ -49,5 +64,24 @@ return RectorConfig::configure()
         SingleInArrayToCompareRector::class, // Skip turning in_array checks into `===` checks
         NameImportingPostRector::class => [ // Skip importing names in config files.
             'config'
-        ]
+        ],
+    ])
+    // Laravel 13
+    ->withSkip([
+        // Skip turning all properties into attributes
+        AppendsPropertyToAppendsAttributeRector::class,
+        BackoffPropertyToBackoffAttributeRector::class,
+        ConnectionPropertyToConnectionAttributeRector::class,
+        FailOnTimeoutPropertyToFailOnTimeoutAttributeRector::class,
+        FillablePropertyToFillableAttributeRector::class,
+        GuardedPropertyToGuardedAttributeRector::class,
+        HiddenPropertyToHiddenAttributeRector::class,
+        JobConnectionPropertyToJobConnectionAttributeRector::class,
+        MaxExceptionsPropertyToMaxExceptionsAttributeRector::class,
+        QueuePropertyToQueueAttributeRector::class,
+        TablePropertyToTableAttributeRector::class,
+        TimeoutPropertyToTimeoutAttributeRector::class,
+        TouchesPropertyToTouchesAttributeRector::class,
+        TriesPropertyToTriesAttributeRector::class,
+        UniqueForPropertyToUniqueForAttributeRector::class,
     ]);
