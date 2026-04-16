@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Rector\CodeQuality\Rector\FuncCall\SingleInArrayToCompareRector;
+use Rector\CodingStyle\Rector\Encapsed\EncapsedStringsToSprintfRector;
 use Rector\CodingStyle\Rector\PostInc\PostIncDecToPreIncDecRector;
 use Rector\CodingStyle\Rector\Stmt\NewlineAfterStatementRector;
 use Rector\Config\RectorConfig;
@@ -73,6 +74,7 @@ return RectorConfig::configure()
     ->withSkip([
         PostIncDecToPreIncDecRector::class, // Skip turning $i++ into ++$i, this conflicts with Pint
         ClosureToArrowFunctionRector::class, // Skip turning all anonymous functions into arrow functions.
+        EncapsedStringsToSprintfRector::class, // Skip turning "abc {$var}" into sprintf('abc %s', $var).
         NewlineAfterStatementRector::class, // Don't add new lines, this is phpcs' responsibility
         SingleInArrayToCompareRector::class, // Skip turning in_array checks into `===` checks
         NameImportingPostRector::class => [ // Skip importing names in config files.
