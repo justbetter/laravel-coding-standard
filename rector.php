@@ -3,11 +3,9 @@
 declare(strict_types=1);
 
 use Rector\CodeQuality\Rector\FuncCall\SingleInArrayToCompareRector;
-use Rector\CodingStyle\Rector\Encapsed\EncapsedStringsToSprintfRector;
 use Rector\CodingStyle\Rector\PostInc\PostIncDecToPreIncDecRector;
 use Rector\CodingStyle\Rector\Stmt\NewlineAfterStatementRector;
 use Rector\Config\RectorConfig;
-use Rector\DeadCode\Rector\MethodCall\RemoveNullArgOnNullDefaultParamRector;
 use Rector\Php74\Rector\Closure\ClosureToArrowFunctionRector;
 use Rector\PostRector\Rector\NameImportingPostRector;
 use RectorLaravel\Rector\Class_\AddExtendsAnnotationToModelFactoriesRector;
@@ -18,7 +16,6 @@ use RectorLaravel\Rector\ClassMethod\AddGenericReturnTypeToRelationsRector;
 use RectorLaravel\Rector\Empty_\EmptyToBlankAndFilledFuncRector;
 use RectorLaravel\Rector\Expr\AppEnvironmentComparisonToParameterRector;
 use RectorLaravel\Rector\Expr\SubStrToStartsWithOrEndsWithStaticMethodCallRector\SubStrToStartsWithOrEndsWithStaticMethodCallRector;
-use RectorLaravel\Rector\FuncCall\AppToResolveRector;
 use RectorLaravel\Rector\FuncCall\ConfigToTypedConfigMethodCallRector;
 use RectorLaravel\Rector\FuncCall\NotFilledBlankFuncCallToBlankFilledFuncCallRector;
 use RectorLaravel\Rector\FuncCall\NowFuncWithStartOfDayMethodCallToTodayFuncRector;
@@ -29,11 +26,9 @@ use RectorLaravel\Rector\If_\ThrowIfRector;
 use RectorLaravel\Rector\MethodCall\AssertStatusToAssertMethodRector;
 use RectorLaravel\Rector\MethodCall\EloquentWhereRelationTypeHintingParameterRector;
 use RectorLaravel\Rector\MethodCall\EloquentWhereTypeHintClosureParameterRector;
-use RectorLaravel\Rector\MethodCall\RedirectRouteToToRouteHelperRector;
 use RectorLaravel\Rector\MethodCall\ReverseConditionableMethodCallRector;
 use RectorLaravel\Rector\MethodCall\ValidationRuleArrayStringValueToArrayRector;
 use RectorLaravel\Rector\StaticCall\AssertWithClassStringToTypeHintedClosureRector;
-use RectorLaravel\Rector\StaticCall\DispatchToHelperFunctionsRector;
 use RectorLaravel\Rector\StaticCall\EloquentMagicMethodToQueryBuilderRector;
 use RectorLaravel\Set\LaravelSetProvider;
 
@@ -41,6 +36,7 @@ return RectorConfig::configure()
     ->withPaths([
         __DIR__.'/../../../app',
         __DIR__.'/../../../config',
+        __DIR__.'/../../../database',
         __DIR__.'/../../../routes',
         __DIR__.'/../../../resources',
         __DIR__.'/../../../tests',
@@ -77,13 +73,7 @@ return RectorConfig::configure()
     ->withSkip([
         PostIncDecToPreIncDecRector::class, // Skip turning $i++ into ++$i, this conflicts with Pint
         ClosureToArrowFunctionRector::class, // Skip turning all anonymous functions into arrow functions.
-        EncapsedStringsToSprintfRector::class, // Skip turning "abc {$var}" into sprintf('abc %s', $var).
-        ModelCastsPropertyToCastsMethodRector::class, // Skip turning casts variable to function.
         NewlineAfterStatementRector::class, // Don't add new lines, this is phpcs' responsibility
-        RemoveNullArgOnNullDefaultParamRector::class, // Skip removing null from instances like `where('x', '=', null)`
-        DispatchToHelperFunctionsRector::class, // Skip turning Job::dispatch() into dispatch(new Job())
-        AppToResolveRector::class, // Skip turning app(Resolvable::class) into resolve(Resolvable::class)
-        RedirectRouteToToRouteHelperRector::class, // Skip turing redirect()->route(...) into `to_route`
         SingleInArrayToCompareRector::class, // Skip turning in_array checks into `===` checks
         NameImportingPostRector::class => [ // Skip importing names in config files.
             'config',
