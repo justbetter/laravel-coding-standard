@@ -1,25 +1,23 @@
 name: prettier
 
-on: ["push", "pull_request"]
+on: ['push', 'pull_request']
 
 jobs:
-  test:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: true
-      matrix:
-        os: [ubuntu-latest]
+    prettier:
+        runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+        name: Prettier
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: lts/*
+        steps:
+            -   name: Checkout code
+                uses: actions/checkout@v6
 
-      - name: Install Yarn dependencies
-        run: npm install -g yarn && yarn
+            -   uses: actions/setup-node@v4
+                with:
+                    node-version: lts/*
 
-      - name: Execute tests
-        run: ./node_modules/.bin/prettier resources --check
+            -   name: Install Yarn dependencies
+                run: npm install -g yarn && yarn
+
+            -   name: Execute tests
+                run: ./node_modules/.bin/prettier resources --check
