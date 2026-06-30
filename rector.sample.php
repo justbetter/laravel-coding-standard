@@ -6,6 +6,7 @@ use Rector\Configuration\RectorConfigBuilder;
 
 /** @var RectorConfigBuilder $rectorConfig */
 $rectorConfig = require 'vendor/justbetter/laravel-coding-standard/rector.php';
+// $rectorConfig = require 'vendor/justbetter/laravel-coding-standard/rector.strict.php'; // Enable all prepared sets. You can remove the with*Level and withPreparedSets config.
 
 $rectorConfig->withPaths([
     __DIR__ . '/app',
