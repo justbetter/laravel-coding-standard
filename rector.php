@@ -8,6 +8,7 @@ use Rector\CodingStyle\Rector\PostInc\PostIncDecToPreIncDecRector;
 use Rector\CodingStyle\Rector\Stmt\NewlineAfterStatementRector;
 use Rector\Config\RectorConfig;
 use Rector\Php74\Rector\Closure\ClosureToArrowFunctionRector;
+use Rector\Php81\Rector\Array_\ArrayToFirstClassCallableRector;
 use Rector\PostRector\Rector\NameImportingPostRector;
 use RectorLaravel\Rector\Class_\AddExtendsAnnotationToModelFactoriesRector;
 use RectorLaravel\Rector\Class_\AnonymousMigrationsRector;
@@ -78,6 +79,9 @@ return RectorConfig::configure()
         NewlineAfterStatementRector::class, // Don't add new lines, this is phpcs' responsibility
         SingleInArrayToCompareRector::class, // Skip turning in_array checks into `===` checks
         NameImportingPostRector::class => [ // Skip importing names in config files.
+            'config',
+        ],
+        ArrayToFirstClassCallableRector::class => [ // Allow Array callable in config files since only they can be serialized.
             'config',
         ],
     ]);
