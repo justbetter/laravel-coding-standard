@@ -43,7 +43,7 @@ return RectorConfig::configure()
         __DIR__.'/../../../resources',
         __DIR__.'/../../../tests',
     ])
-    ->withSetProviders(LaravelSetProvider::class)
+    ->withComposerBased(laravel: true)
     ->withPhpSets()
     ->withImportNames(removeUnusedImports: true)
     ->withFluentCallNewLine()
