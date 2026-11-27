@@ -43,7 +43,7 @@ return RectorConfig::configure()
         __DIR__.'/../../../resources',
         __DIR__.'/../../../tests',
     ])
-    ->withSetProviders(LaravelSetProvider::class)
+    ->withComposerBased(laravel: true)
     ->withPhpSets()
     ->withImportNames(removeUnusedImports: true)
     ->withFluentCallNewLine()
@@ -73,9 +73,7 @@ return RectorConfig::configure()
         ValidationRuleArrayStringValueToArrayRector::class, // Convert string validation rules into arrays for Laravel's Validator.
     ])
     ->withSkip([
-        PostIncDecToPreIncDecRector::class, // Skip turning $i++ into ++$i, this conflicts with Pint
         ClosureToArrowFunctionRector::class, // Skip turning all anonymous functions into arrow functions.
-        EncapsedStringsToSprintfRector::class, // Skip turning "abc {$var}" into sprintf('abc %s', $var).
         NewlineAfterStatementRector::class, // Don't add new lines, this is phpcs' responsibility
         SingleInArrayToCompareRector::class, // Skip turning in_array checks into `===` checks
         NameImportingPostRector::class => [ // Skip importing names in config files.
